@@ -1,0 +1,9 @@
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\bin\Debug\netcoreapp3.1\appsettings.Development.json
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\bin\Debug\netcoreapp3.1\appsettings.json
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\PomeloButterBlog.Api.csprojAssemblyReference.cache
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\PomeloButterBlog.Api.AssemblyInfoInputs.cache
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\PomeloButterBlog.Api.AssemblyInfo.cs
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\PomeloButterBlog.Api.RazorTargetAssemblyInfo.cache
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\staticwebassets\PomeloButterBlog.Api.StaticWebAssets.Manifest.cache
+D:\MDA\PomeloButterBlazor\src\PomeloButterBlog.Api\obj\Debug\netcoreapp3.1\staticwebassets\PomeloButterBlog.Api.StaticWebAssets.xml
