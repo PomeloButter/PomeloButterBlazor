@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 .vs/PomeloButterBlazor/v16/.suo
+src/PomeloButterBlog.Api/obj/project.nuget.cache
