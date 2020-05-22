@@ -14,5 +14,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\PomeloButterBlog.Common\PomeloButterBlog.Common.csproj" />
+  </ItemGroup>
+
 
 </Project>
