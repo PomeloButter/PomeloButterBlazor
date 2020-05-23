@@ -1,0 +1,39 @@
+﻿@page "/Tags"
+@using PomeloButterBlog.Common.Models
+@inject HttpClient Http
+<div class="main">
+    <div class="container">
+        <div class="post-wrap tags">
+            <h2 class="post-title">-&nbsp;Tags&nbsp;-</h2>
+            <div class="tag-cloud-tags">
+                @foreach (var item in Models)
+                {
+                    <a href="@BuildLink(@item.DisplayName,@PageIndex)">@item.TagName<small>(@item.Count)</small></a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+    public IList<TagViewModel> Models;
+    [Parameter] public int PageIndex { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Models = await Http.GetFromJsonAsync<List<TagViewModel>>($"/BlogApi/GetTagList/");
+    }
+    private string BuildLink(string displayName, int pageIndex)
+    {
+        string link = $"/Posts/Tags/";
+        if (!string.IsNullOrEmpty(displayName))
+        {
+            link = link + $"{displayName}/";
+        }
+        pageIndex = pageIndex == 0 ? 1 : pageIndex;
+        if (pageIndex > 0)
+        {
+            link = link + $"{pageIndex}";
+        }
+        return link;
+    }
+}

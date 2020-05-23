@@ -20,4 +20,8 @@
     <None Include="wwwroot\css\open-iconic\README.md" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\PomeloButterBlog.Common\PomeloButterBlog.Common.csproj" />
+  </ItemGroup>
+
 </Project>

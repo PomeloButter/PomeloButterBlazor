@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Blog.Models
+namespace PomeloButterBlog.Common.Models
 {
     public class PostDetailsModel
     {

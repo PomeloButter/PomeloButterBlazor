@@ -1,4 +1,4 @@
-﻿namespace PomeloButterBlog.Common
+﻿namespace PomeloButterBlog.Common.Entites
 {
     public class Tag
     {

@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["src/PomeloButterBlog.Api/PomeloButterBlog.Api.csproj", "src/PomeloButterBlog.Api/"]
 RUN dotnet restore "src/PomeloButterBlog.Api/PomeloButterBlog.Api.csproj"
 COPY . .
-WORKDIR "/src/src/PomeloButterBlog.Api"
+WORKDIR "/src/PomeloButterBlog.Api"
 RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

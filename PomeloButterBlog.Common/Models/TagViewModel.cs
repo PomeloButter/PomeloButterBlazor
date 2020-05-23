@@ -1,4 +1,4 @@
-﻿namespace Blog.Models
+﻿namespace PomeloButterBlog.Common.Models
 {
     public class TagViewModel
     {

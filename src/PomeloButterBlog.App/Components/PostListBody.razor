@@ -1,0 +1,96 @@
+﻿@page "/PostListBody"
+@using PomeloButterBlog.Common.Models
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@if (_models.Count() != 0)
+{
+    <div class="main">
+        <div class="post-wrap archive">
+            @foreach (var item in _models)
+            {
+                <h3>@item.Year</h3>
+                foreach (var post in item.Posts)
+                {
+                    <article class="archive-item">
+                        <a class="archive-item-link" href="@BuildPostDetailsLink(@post.Url)">@post.Title</a>
+
+                        <span class="archive-item-date">@post.CreationTime</span>
+                    </article>
+                }
+
+            }
+        </div>
+        <nav class="pagination">
+            @for (var i = 1; i <= _totalPages; ++i)
+            {
+                if (PageIndex == i)
+                {
+                    <span class="page-number current">@i</span>
+                }
+                else
+                {
+                    <a class="page-number" href="@BuildLink(i)">@i</a>
+
+                }
+            }
+        </nav>
+    </div>
+}
+else
+{
+    <NotDisPlayLayout />
+}
+
+@code {
+    [Parameter]
+    public string Tag { get; set; }
+    [Parameter]
+    public string Calalog { get; set; }
+    [Parameter]
+    public int PageIndex { get; set; }
+
+    int _totalPages;
+
+    IEnumerable<PostViewModel> _models;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var result = await Http.GetFromJsonAsync<PagedViewModel<PostViewModel>>($"/BlogApi/GetPostList?tag={Tag}&catalog={Calalog}&pageIndex={PageIndex}");
+        _models = result.Data;
+        _totalPages = result.TotalPage;
+        PageIndex = PageIndex == 0 ? PageIndex = 1 : PageIndex;
+        Tag = Tag;
+        Calalog = Calalog;
+    }
+
+    private string BuildLink(int pageIndex)
+    {
+        string link = $"/Posts/";
+        if (!string.IsNullOrEmpty(Tag))
+        {
+            link = link + $"Tags/{Tag}/";
+        }
+        else if (!string.IsNullOrEmpty(Calalog))
+        {
+            link = link + $"Categories/{Calalog}/";
+        }
+        if (pageIndex > 0)
+        {
+            link = link + $"{pageIndex}";
+        }
+        return link;
+    }
+
+    private string BuildPostDetailsLink(string url)
+    {
+        string link = $"/PostDetails/";
+        if (!string.IsNullOrEmpty(url))
+        {
+            link = link + $"{url}";
+        }
+        return link;
+    }
+
+
+}

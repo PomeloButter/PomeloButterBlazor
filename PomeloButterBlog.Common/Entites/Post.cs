@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PomeloButterBlog.Common
+namespace PomeloButterBlog.Common.Entites
 {
     public class Post
     {
