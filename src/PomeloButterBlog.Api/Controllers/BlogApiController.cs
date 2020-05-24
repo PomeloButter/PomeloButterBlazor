@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using PomeloButterBlog.Api.Data;
 using PomeloButterBlog.Common.Entites;
 using PomeloButterBlog.Common.Models;
@@ -173,14 +174,16 @@ namespace PomeloButterBlog.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetTagList")]
-        public async Task<IList<TagViewModel>> GetTagListAsync()
+        public async Task<List<TagViewModel>> GetTagListAsync()
         {
-            return await _context.Tags.Select(x => new TagViewModel
+
+          return  await _context.Tags.Select(x => new TagViewModel
             {
                 TagName = x.TagName,
                 DisplayName = x.DisplayName,
                 Count = _context.PostTags.Count(s => s.TagId == x.Id)
             }).ToListAsync();
+
         }
     }
 }

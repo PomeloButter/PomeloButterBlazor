@@ -17,6 +17,7 @@ namespace PomeloButterBlog.Api
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,8 +28,29 @@ namespace PomeloButterBlog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5000",
+                            "http://localhost:32768");
+                    });
+            });
+            services.AddAntiforgery();
+            // services.ConfigureApplicationCookie(options =>
+            // {
+            //     options.Events.OnRedirectToLogin =
+            //         options.Events.OnRedirectToAccessDenied = context =>
+            //         {
+            //             context.Response.StatusCode = 401;
+            //             return Task.CompletedTask;
+            //         };
+            // });
             services.AddDbContext<BlogContext>(opt => { opt.UseMySql(Configuration.GetConnectionString("Blog")); });
+            services.AddControllers();
+         
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,17 +63,13 @@ namespace PomeloButterBlog.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
-            
+
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
             });
-            app.UseCors(policy =>
-                policy.WithOrigins("http://localhost:5000", "http://localhost:32769")
-                    .AllowAnyMethod()
-                    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization)
-                    .AllowCredentials());
+        
             CreateDatabase(app);
         }
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using PomeloButterBlog.App.HttpClientApi;
 
 namespace PomeloButterBlog.App
 {
@@ -16,9 +17,9 @@ namespace PomeloButterBlog.App
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-
-            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://localhost:32769/") });
-            
+          
+            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://localhost:32768") });
+            builder.Services.AddScoped<BlogApi>();
             await builder.Build().RunAsync();
         }
     }

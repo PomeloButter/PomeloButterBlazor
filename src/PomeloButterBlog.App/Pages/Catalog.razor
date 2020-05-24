@@ -1,24 +1,27 @@
 ﻿@page "/Categories"
 @using PomeloButterBlog.Common.Models
-@inject HttpClient Http
+@inject BlogApi Api
 <div class="main">
     <div class="container">
         <div class="post-wrap categories">
             <h2 class="post-title">-&nbsp;Categories&nbsp;-</h2>
             <div class="categories-card">
-                @foreach (var item in Models)
+                @if (Models!=null)
                 {
-                    <div class="card-item">
-                        <div class="categories">
-                            <a href="@BuildLink(@item.DisplayName,@PageIndex)">
-                                <h3>
-                                    <i class="iconfont iconcode" style="padding-right:3px"></i>
-                                    @item.CategoryName
-                                </h3>
-                                <small>(@item.Count)</small>
-                            </a>
+                    @foreach (var item in Models)
+                    {
+                        <div class="card-item">
+                            <div class="categories">
+                                <a href="@BuildLink(@item.DisplayName, @PageIndex)">
+                                    <h3>
+                                        <i class="iconfont iconcode" style="padding-right: 3px"></i>
+                                        @item.CategoryName
+                                    </h3>
+                                    <small>(@item.Count)</small>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
             </div>
         </div>
@@ -31,7 +34,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        Models = await Http.GetFromJsonAsync<List<CatalogViewModel>>($"/BlogApi/GetCatalogList/");
+        Models = await Api.GetCatalogListAsync();
     }
 
     private string BuildLink(string displayName, int pageIndex)
