@@ -1,6 +1,6 @@
 ﻿@page "/PostDetails/{Url}"
 @using PomeloButterBlog.Common.Models
-@inject HttpClient Http
+@inject BlogApi Api
 <div class="main">
     <div class="container">
         <article class="post-wrap">
@@ -65,7 +65,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Model = await Http.GetFromJsonAsync<PostDetailsModel>("/BlogApi/GetPostById?url=" + Url);
+        Model = await Api.GetPostByIdAsync(Url);
     }
     
 }

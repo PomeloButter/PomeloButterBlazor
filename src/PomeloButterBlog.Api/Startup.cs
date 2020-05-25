@@ -34,19 +34,9 @@ namespace PomeloButterBlog.Api
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:5000",
-                            "http://localhost:32768");
+                            "http://localhost:32770");
                     });
             });
-            services.AddAntiforgery();
-            // services.ConfigureApplicationCookie(options =>
-            // {
-            //     options.Events.OnRedirectToLogin =
-            //         options.Events.OnRedirectToAccessDenied = context =>
-            //         {
-            //             context.Response.StatusCode = 401;
-            //             return Task.CompletedTask;
-            //         };
-            // });
             services.AddDbContext<BlogContext>(opt => { opt.UseMySql(Configuration.GetConnectionString("Blog")); });
             services.AddControllers();
          
@@ -70,7 +60,7 @@ namespace PomeloButterBlog.Api
                 endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
             });
         
-            CreateDatabase(app);
+            // CreateDatabase(app);
         }
 
         private void CreateDatabase(IApplicationBuilder app)

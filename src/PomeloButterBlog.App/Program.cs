@@ -18,7 +18,7 @@ namespace PomeloButterBlog.App
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
           
-            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://localhost:32768") });
+            builder.Services.AddSingleton(sp => new HttpClient { BaseAddress = new Uri("http://localhost:32770") });
             builder.Services.AddScoped<BlogApi>();
             await builder.Build().RunAsync();
         }

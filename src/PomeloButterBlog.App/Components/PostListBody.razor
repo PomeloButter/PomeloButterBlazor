@@ -1,6 +1,6 @@
 ﻿@page "/PostListBody"
 @using PomeloButterBlog.Common.Models
-@inject HttpClient Http
+@inject BlogApi Api
 @inject NavigationManager NavigationManager
 @if (_models.Count() != 0)
 {
@@ -56,7 +56,7 @@ else
     protected override async Task OnInitializedAsync()
     {
 
-        var result = await Http.GetFromJsonAsync<PagedViewModel<PostViewModel>>($"/BlogApi/GetPostList?tag={Tag}&catalog={Calalog}&pageIndex={PageIndex}");
+        var result = await Api.GetPostListAsync(Tag, Calalog, PageIndex);
         _models = result.Data;
         _totalPages = result.TotalPage;
         PageIndex = PageIndex == 0 ? PageIndex = 1 : PageIndex;
