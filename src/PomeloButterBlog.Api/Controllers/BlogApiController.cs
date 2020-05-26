@@ -14,7 +14,8 @@ namespace PomeloButterBlog.Api.Controllers
 {
 
     [Route("BlogApi")]
-    public class BlogApiController : Controller
+    [ApiController]
+    public class BlogApiController : ControllerBase
     {
         // GET
         private readonly BlogContext _context;
@@ -28,7 +29,7 @@ namespace PomeloButterBlog.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetCatalogList")]
-        
+        [HttpGet]
         public async Task<IList<CatalogViewModel>> GetCatalogListAsync()
         {
             var catalogViewModels = await _context.Catalogs.Select(x => new CatalogViewModel
@@ -46,6 +47,7 @@ namespace PomeloButterBlog.Api.Controllers
         /// <param name="url"></param>
         /// <returns></returns>
         [Route("GetPostById")]
+        [HttpGet]
         public async Task<PostDetailsModel> GetPostByIdAsync(string url)
         {
             var post = await _context.Posts.SingleOrDefaultAsync(s => s.Url == url);
@@ -110,6 +112,7 @@ namespace PomeloButterBlog.Api.Controllers
         /// <param name="pageSize"></param>
         /// <returns></returns>
         [Route("GetPostList")]
+        [HttpGet]
         public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog, int pageIndex = 1,
             int pageSize = 10)
         {
@@ -175,6 +178,7 @@ namespace PomeloButterBlog.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("GetTagList")]
+        [HttpGet]
         public async Task<List<TagViewModel>> GetTagListAsync()
         {
 

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
+using Microsoft.OpenApi.Models;
 using PomeloButterBlog.Api.Data;
 
 namespace PomeloButterBlog.Api
@@ -28,6 +29,10 @@ namespace PomeloButterBlog.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PomeloButterBlog Api", Version = "v1" });
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
@@ -50,6 +55,11 @@ namespace PomeloButterBlog.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "PomeloButterBlog v1");
+            });
 
             app.UseRouting();
 
