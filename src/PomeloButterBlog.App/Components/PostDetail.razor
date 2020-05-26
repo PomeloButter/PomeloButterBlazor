@@ -1,55 +1,58 @@
-﻿@page "/PostDetails/{Url}"
+﻿@page "/PostDetails/{Url}/"
 @using PomeloButterBlog.Common.Models
 @inject BlogApi Api
 <div class="main">
     <div class="container">
-        <article class="post-wrap">
-            <header class="post-header">
-                <h1 class="post-title">@Model.Title</h1>
-                <div class="post-meta">
-                    Author: <a itemprop="author" rel="author" href="javascript:void(0);">@Model.Author</a>
-                    <span class="post-time">
-                        Date: <a href="javascript:;">@Model.CreationTime</a>
-                    </span>
-                    @if (Model.Category != null)
-                    {
-                        <span class="post-category">
-                            Category:<a href="/Posts/Categories/@Model.Category.DisplayName/@PageIndex">@Model.Category.CategoryName</a>
+        @if (Model != null)
+        {<article class="post-wrap">
+                <header class="post-header">
+                    <h1 class="post-title">@Model.Title</h1>
+                    <div class="post-meta">
+                        Author: <a itemprop="author" rel="author" href="javascript:void(0);">@Model.Author</a>
+                        <span class="post-time">
+                            Date: <a href="javascript:;">@Model.CreationTime</a>
                         </span>
-                    }
-                </div>
-            </header>
-            <div class="post-content" id="content">
-                @Model.Html
-            </div>
-            <section class="post-tags">
-                <div>
-                    <span>Tag(s):</span>
-                    <span class="tag">
-                        @foreach (var item in Model.Tags)
+                        @if (Model.Category != null)
                         {
-                            <a href="/Posts/Tags/@item.DisplayName/@PageIndex"># @item.TagName</a>
+                            <span class="post-category">
+                                Category:<a href="/Posts/Categories/@Model.Category.DisplayName/@PageIndex">@Model.Category.CategoryName</a>
+                            </span>
                         }
-                    </span>
+                    </div>
+                </header>
+                <div class="post-content" id="content">
+                    @Model.Html
                 </div>
-                <div>
-                    <a href="javascript:window.history.back();">back</a>
-                    <span>· </span>
-                    <a href="/">home</a>
-                </div>
-            </section>
-            <section class="post-nav">
-                @if (Model.Previous != null)
-                {
-                    <a class="prev" rel="prev" href="/PostDetails/@Model.Previous.Url">@Model.Previous.Title</a>
-                }
+                <section class="post-tags">
+                    <div>
+                        <span>Tag(s):</span>
+                        <span class="tag">
+                            @foreach (var item in Model.Tags)
+                            {
+                                <a href="/Posts/Tags/@item.DisplayName/@PageIndex"># @item.TagName</a>
+                            }
+                        </span>
+                    </div>
+                    <div>
+                        <a href="javascript:window.history.back();">back</a>
+                        <span>· </span>
+                        <a href="/">home</a>
+                    </div>
+                </section>
+                <section class="post-nav">
+                    @if (Model.Previous != null)
+                    {
+                        <a class="prev" rel="prev" @onclick="@(e => GetPostByUrl(e,Model.Previous.Url))">@Model.Previous.Title</a>
+                    }
 
-                @if (Model.Next != null)
-                {
-                    <a class="next" rel="next" href="/PostDetails/@Model.Next.Url">@Model.Next.Title</a>
-                }
-            </section>
-        </article>
+                    @if (Model.Next != null)
+                    {
+                        <a class="next" rel="next" @onclick="@(e => GetPostByUrl(e,Model.Next.Url))">@Model.Next.Title</a>
+                    }
+                </section>
+            </article>
+        }
+
     </div>
 </div>
 
@@ -67,5 +70,14 @@
     {
         Model = await Api.GetPostByIdAsync(Url);
     }
-    
+
+
+    private  async Task GetPostByUrl(MouseEventArgs e, string url)
+    {
+        if (url!=null)
+        {
+            Model =await Api.GetPostByIdAsync(url);
+        }
+
+    }
 }

@@ -34,7 +34,7 @@ namespace PomeloButterBlog.Api
                     builder =>
                     {
                         builder.WithOrigins("http://localhost:5000",
-                            "http://localhost:32770");
+                            "http://localhost:32769");
                     });
             });
             services.AddDbContext<BlogContext>(opt => { opt.UseMySql(Configuration.GetConnectionString("Blog")); });

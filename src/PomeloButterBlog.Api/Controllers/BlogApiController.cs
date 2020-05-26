@@ -111,7 +111,7 @@ namespace PomeloButterBlog.Api.Controllers
         /// <returns></returns>
         [Route("GetPostList")]
         public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog, int pageIndex = 1,
-            int pageSize = 2)
+            int pageSize = 10)
         {
             var list = new List<Post>();
             var count = 0;
@@ -167,6 +167,7 @@ namespace PomeloButterBlog.Api.Controllers
                 TotalCount = count,
                 TotalPage = pageCount
             };
+         
         }
 
         /// <summary>

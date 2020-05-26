@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PomeloButterBlog.Common.Models;
 
 namespace PomeloButterBlog.App.HttpClientApi
@@ -12,10 +13,7 @@ namespace PomeloButterBlog.App.HttpClientApi
         {
             
             var result = await WorkingAsync(HttpMethod.Get, "/BlogApi/GetTagList/");
-            IList<TagViewModel> models = JsonSerializer.Deserialize<IList<TagViewModel>>(result, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
+            IList<TagViewModel> models = JsonConvert.DeserializeObject<IList<TagViewModel>>(result);
             return models;
         }
     }
