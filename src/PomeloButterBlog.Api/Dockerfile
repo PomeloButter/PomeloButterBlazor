@@ -7,12 +7,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["src/PomeloButterBlog.Api/PomeloButterBlog.Api.csproj", "src/PomeloButterBlog.Api/"]
-COPY ["src/PomeloButterBlog.App/PomeloButterBlog.App.csproj", "src/PomeloButterBlog.App/"]
-COPY ["PomeloButterBlog.Common/PomeloButterBlog.Common.csproj", "PomeloButterBlog.Common/"]
+COPY ["/PomeloButterBlog.Api/PomeloButterBlog.Api.csproj", "src/PomeloButterBlog.Api/"]
+COPY ["/PomeloButterBlog.App/PomeloButterBlog.App.csproj", "src/PomeloButterBlog.App/"]
+COPY ["/PomeloButterBlog.Common/PomeloButterBlog.Common.csproj", "src/PomeloButterBlog.Common/"]
 RUN dotnet restore "src/PomeloButterBlog.Api/PomeloButterBlog.Api.csproj"
 COPY . .
-WORKDIR "/src/src/PomeloButterBlog.Api"
+WORKDIR "//src/PomeloButterBlog.Api"
 RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
