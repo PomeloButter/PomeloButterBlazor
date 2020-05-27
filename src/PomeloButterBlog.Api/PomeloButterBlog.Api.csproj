@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PomeloButterBlog.Common\PomeloButterBlog.Common.csproj" />
     <ProjectReference Include="..\PomeloButterBlog.App\PomeloButterBlog.App.csproj" />
   </ItemGroup>
 

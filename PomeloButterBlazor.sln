@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FD249146-9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PomeloButterBlog.Api", "src\PomeloButterBlog.Api\PomeloButterBlog.Api.csproj", "{1305B1D9-C5A1-47F0-AEAF-CCA120B1A9F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PomeloButterBlog.Common", "PomeloButterBlog.Common\PomeloButterBlog.Common.csproj", "{8888DBBA-FC67-4284-A567-5214DF2A1927}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PomeloButterBlog.Common", "src\PomeloButterBlog.Common\PomeloButterBlog.Common.csproj", "{7106A53C-E341-404F-965F-267C88D3971F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +27,10 @@ Global
 		{1305B1D9-C5A1-47F0-AEAF-CCA120B1A9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1305B1D9-C5A1-47F0-AEAF-CCA120B1A9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1305B1D9-C5A1-47F0-AEAF-CCA120B1A9F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8888DBBA-FC67-4284-A567-5214DF2A1927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8888DBBA-FC67-4284-A567-5214DF2A1927}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8888DBBA-FC67-4284-A567-5214DF2A1927}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8888DBBA-FC67-4284-A567-5214DF2A1927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7106A53C-E341-404F-965F-267C88D3971F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7106A53C-E341-404F-965F-267C88D3971F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7106A53C-E341-404F-965F-267C88D3971F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7106A53C-E341-404F-965F-267C88D3971F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,7 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{361E95C0-EFDA-4F86-85A8-FDB658430E39} = {9EB262D6-2EB3-44FA-9504-B483BDD43563}
 		{1305B1D9-C5A1-47F0-AEAF-CCA120B1A9F4} = {9EB262D6-2EB3-44FA-9504-B483BDD43563}
-		{8888DBBA-FC67-4284-A567-5214DF2A1927} = {9EB262D6-2EB3-44FA-9504-B483BDD43563}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E00A590E-3A06-4231-BE14-561A8FDD2B1D}
