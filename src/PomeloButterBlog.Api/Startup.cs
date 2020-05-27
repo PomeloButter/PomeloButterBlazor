@@ -18,7 +18,7 @@ namespace PomeloButterBlog.Api
 {
     public class Startup
     {
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,18 +33,12 @@ namespace PomeloButterBlog.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PomeloButterBlog Api", Version = "v1" });
             });
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:5000",
-                            "http://localhost:32769");
-                    });
-            });
+
             services.AddDbContext<BlogContext>(opt => { opt.UseMySql(Configuration.GetConnectionString("Blog")); });
-            services.AddControllers();
-         
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
 
         }
 
@@ -54,6 +48,7 @@ namespace PomeloButterBlog.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWebAssemblyDebugging();
             }
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -61,13 +56,18 @@ namespace PomeloButterBlog.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "PomeloButterBlog v1");
             });
 
+            app.UseHttpsRedirection();
+            app.UseBlazorFrameworkFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
 
 
-            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireCors(MyAllowSpecificOrigins);
+                endpoints.MapRazorPages();
+                endpoints.MapControllers();
+                endpoints.MapFallbackToFile("index.html");
             });
         
             // CreateDatabase(app);

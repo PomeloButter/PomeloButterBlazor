@@ -4,9 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <UserSecretsId>3ccfc82b-49fe-48d5-99d3-1d72b00bddaa</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="3.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -18,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\PomeloButterBlog.Common\PomeloButterBlog.Common.csproj" />
+    <ProjectReference Include="..\PomeloButterBlog.App\PomeloButterBlog.App.csproj" />
   </ItemGroup>
 
 
