@@ -343,3 +343,4 @@ src/PomeloButterBlog.Api/obj/
 src/PomeloButterBlog.Api/bin/
 src/PomeloButterBlog.App/bin/
 src/PomeloButterBlog.App/obj/
+src/PomeloButterBlog.Api/appsettings.json
