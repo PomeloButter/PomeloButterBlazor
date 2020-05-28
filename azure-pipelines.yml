@@ -12,7 +12,6 @@ steps:
 
     docker build -f Dockerfile -t $(imageName) .
     docker login -u $(dockerId) -p $(pwd)
-    docker tag $(imageName) hub.docker.com/$(imageName)
     docker push $(imageName)
 
 
