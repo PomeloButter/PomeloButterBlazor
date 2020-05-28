@@ -9,7 +9,7 @@ pool:
 
 steps:
 - script: |
-    docker build -f $(dockerfilepath) -t pomelobutterblazor .
+    docker build -f Dockerfile  -t pomelobutterblazor .
     sudo docker login --username=$(dockerId) $(registry)
     sudo docker tag pomelobutter $(registry)/$(namespace)/$(image):dev
     sudo docker push $(registry)/$(namespace)/$(image):dev
