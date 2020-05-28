@@ -10,8 +10,8 @@ pool:
 steps:
 - script: |
     docker build -f Dockerfile  -t $(image) .
-    winpty docker login --username=$(dockerId) $(registry)
-    sudo docker tag $(image) $(registry)/$(namespace)/$(image)
-    sudo docker push $(registry)/$(namespace)/$(image):latest
+    docker login --username=$(dockerId) $(registry)
+    docker tag $(image) $(registry)/$(namespace)/$(image)
+    docker push $(registry)/$(namespace)/$(image)
 
   displayName: 推送腾讯云镜像
