@@ -10,10 +10,10 @@ variables:
 steps:
 - script: |
 
-    docker build -f Dockerfile -t $(image)
+    docker build -f Dockerfile -t $(image):latest .
     docker login -u $(dockerId) -p $(pwd)
-    docker tag $(image) $(imageName)
-    docker push $(imageName)
+    docker tag $(image):latest $(imageName):latest
+    docker push $(imageName):latest
 
 
 
