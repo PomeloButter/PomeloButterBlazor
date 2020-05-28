@@ -13,5 +13,5 @@ RUN dotnet publish "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj" -c Release
 
 FROM nginx:alpine AS final
 WORKDIR /usr/share/nginx/html
-COPY --from=publish /app/publish/PomeloButterBlog/dist .
+COPY --from=publish /app/publish/PomeloButterBlazor/dist .
 COPY nginx.conf /etc/nginx/nginx.conf
