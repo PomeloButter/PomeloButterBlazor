@@ -17,6 +17,5 @@ steps:
 - script: |
     docker build -f $(dockerfilepath) -t $(imageName) .
     docker login -u $(dockerId) -p $(pwd) 
-    docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
     docker push $(registry)/$(namespace)/$(imageName)
   displayName: push to dockerhub
