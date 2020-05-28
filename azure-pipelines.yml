@@ -6,6 +6,7 @@ pool:
 
 
 variables:
+  dockerId: pomelobutter
   namespace: pomelobutter
   imageName: pomelobutterblazor
   registry: https://hub.docker.com/
