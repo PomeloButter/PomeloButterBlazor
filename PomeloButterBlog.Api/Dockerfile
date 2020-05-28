@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY PomeloButterBlog.Api.csproj.
-RUN dotnet restore PomeloButterBlog.Api.csproj
+RUN dotnet restore "PomeloButterBlog.Api.csproj"
 COPY . .
 RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
 
