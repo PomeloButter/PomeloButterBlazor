@@ -1,29 +1,22 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - master
 
-resources:
-- repo: self
+pool:
+  vmImage: 'ubuntu-latest'
+
 
 variables:
-  tag: '$(Build.BuildId)'
+  dockerId: pomelobutter
+  namespace: pomelobutter
+  imageName: pomelobutterblog
+  registry: https://hub.docker.com/
+  dockerfilepath: '$(Build.SourcesDirectory)/Dockerfile'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: buildAndPush
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+
+steps:
+- script: |
+    docker build -f $(dockerfilepath) -t $(imageName) .
+    docker login -u $(dockerId) -p $(pwd) $(registry)
+    docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
+    docker push $(registry)/$(namespace)/$(imageName)
+  displayName: push to dockerhub
