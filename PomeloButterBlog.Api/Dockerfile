@@ -1,24 +1,15 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["PomeloButterBlog.Api/PomeloButterBlog.Api.csproj", "PomeloButterBlog.Api/"]
-COPY ["PomeloButterBlog.App/PomeloButterBlog.App.csproj", "PomeloButterBlog.App/"]
-COPY ["PomeloButterBlog.Common/PomeloButterBlog.Common.csproj", "PomeloButterBlog.Common/"]
-RUN dotnet restore "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj"
+COPY PomeloButterBlog.Api.csproj.
+RUN dotnet restore PomeloButterBlog.Api.csproj
 COPY . .
-WORKDIR "/src/PomeloButterBlog.Api"
 RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "PomeloButterBlog.Api.csproj" -c Release -o /app/publish
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PomeloButterBlog.Api.dll"]
+FROM nginx:alpine AS final
+WORKDIR /usr/share/nginx/html
+COPY --from=publish /app/publish/PomeloButterBlog/dist .
+COPY nginx.conf /etc/nginx/nginx.conf
