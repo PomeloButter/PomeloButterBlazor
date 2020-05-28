@@ -9,9 +9,9 @@ pool:
 
 steps:
 - script: |
-    docker build -f Dockerfile  -t pomelobutterblazor .
+    docker build -f Dockerfile  -t $(image) .
     sudo docker login --username=$(dockerId) $(registry)
-    sudo docker tag pomelobutter $(registry)/$(namespace)/$(image):dev
-    sudo docker push $(registry)/$(namespace)/$(image):dev
+    sudo docker tag $(image) $(registry)/$(namespace)/$(image)
+    sudo docker push $(registry)/$(namespace)/$(image)
 
-  displayName: push to DockerHub
+  displayName: 推送腾讯云镜像
