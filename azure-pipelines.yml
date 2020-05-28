@@ -6,7 +6,7 @@ pool:
 
 
 variables:
-  dockerId: pomelobutter
+  dockerId: ${dockerId}
   namespace: pomelobutter
   imageName: pomelobutterblog
   registry: https://hub.docker.com/
