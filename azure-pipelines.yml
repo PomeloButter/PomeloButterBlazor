@@ -12,7 +12,8 @@ steps:
 
     docker build -f Dockerfile -t $(imageName) .
     docker login -u $(dockerId) -p $(pwd)
-    docker push $(imageName)
+    docker push $(imageName):latest
+
 
 
     # docker build -f Dockerfile  -t $(image) .
@@ -20,4 +21,4 @@ steps:
     # docker tag $(image) $(registry)/$(namespace)/$(image)
     # docker push $(registry)/$(namespace)/$(image)
 
-  displayName: 推送腾讯云镜像
+  displayName: 推送Docker镜像
