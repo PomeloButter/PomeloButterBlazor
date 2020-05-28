@@ -4,7 +4,8 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-
+variables:
+registry: ccr.ccs.tencentyun.com
  
 
 steps:
