@@ -5,15 +5,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 
-variables:
-
-  imageName: '$(dockerId)/pomelobutterblazor'
-
+ 
 
 steps:
 - script: |
-    docker build -f Dockerfile -t $(imageName) .
-    docker login -u $(dockerId) -p $(pwd) $(registry)
-    docker push $(imageName)
+    sudo docker login --username=$(dockerId) $(registry)
+    sudo docker tag [ImageId] $(registry)/$(namespace)/$(image):[tag]
+    sudo docker push $(registry)/$(namespace)/$(image):[tag]
 
   displayName: push to DockerHub
