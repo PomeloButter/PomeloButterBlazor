@@ -2,8 +2,8 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["PomeloButterBlog.Api.csproj", "PomeloButterBlog.Api/"]
-COPY ["PomeloButterBlog.App/PomeloButterBlog.App.csproj", "PomeloButterBlog.App/"]
-COPY ["PomeloButterBlog.Common/PomeloButterBlog.Common.csproj", "PomeloButterBlog.Common/"]
+COPY ["PomeloButterBlog.App.csproj", "PomeloButterBlog.App/"]
+COPY ["PomeloButterBlog.Common.csproj", "PomeloButterBlog.Common/"]
 RUN dotnet restore "PomeloButterBlog.Api.csproj"
 COPY . .
 RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
