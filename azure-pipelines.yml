@@ -6,9 +6,8 @@ pool:
 
 
 variables:
-  dockerId: ${dockerId}
   namespace: pomelobutter
-  imageName: pomelobutterblog
+  imageName: pomelobutterblazor
   registry: https://hub.docker.com/
   dockerfilepath: '$(Build.SourcesDirectory)/Dockerfile'
 
