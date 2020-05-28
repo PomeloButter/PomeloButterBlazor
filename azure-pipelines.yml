@@ -1,12 +1,19 @@
+trigger:
+- master
+
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'ubuntu-latest'
+
 
 variables:
+
   imageName: '$(dockerId)/pomelobutterblazor'
 
-steps:
 
+steps:
 - script: |
     docker build -f Dockerfile -t $(imageName) .
-    docker login -u $(dockerId) -p $(pwd)
+    docker login -u $(dockerId) -p $(pswd) $(registry)
     docker push $(imageName)
+
+  displayName: push to DockerHub
