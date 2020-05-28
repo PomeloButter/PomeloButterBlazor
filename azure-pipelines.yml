@@ -11,6 +11,7 @@ steps:
 - script: |
 
     docker build -f Dockerfile -t $(image):latest .
+    docker images
     docker login -u $(dockerId) -p $(pwd)
     docker tag $(image):latest $(imageName):latest
     docker push $(imageName):latest
