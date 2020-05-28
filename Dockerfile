@@ -11,7 +11,8 @@ RUN dotnet build "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj" -c Release -
 FROM build AS publish
 RUN dotnet publish "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj" -c Release -o /app/publish
 
-FROM nginx:alpine AS final
-WORKDIR /usr/share/nginx/html
-COPY --from=publish /app/publish/PomeloButterBlog.Api/dist .
-COPY nginx.conf /etc/nginx/nginx.conf
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "PomeloButterBlog.Api.dll"]
