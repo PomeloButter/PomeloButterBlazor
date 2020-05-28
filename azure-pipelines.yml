@@ -4,14 +4,10 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  registryPath: https://ccr.ccs.tencentyun.com/
- 
-
 steps:
 - script: |
     docker build -f Dockerfile  -t $(image) .
-    docker login -u $(dockerId) -p $(pwd) $(registryPath)
+    docker login -u $(dockerId) -p $(pwd) $(registry)
     docker tag $(image) $(registry)/$(namespace)/$(image)
     docker push $(registry)/$(namespace)/$(image)
 
