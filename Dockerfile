@@ -4,12 +4,12 @@ WORKDIR /src
 COPY ["PomeloButterBlog.Api/PomeloButterBlog.Api.csproj", "PomeloButterBlog.Api/"]
 COPY ["PomeloButterBlog.App/PomeloButterBlog.App.csproj", "PomeloButterBlog.App/"]
 COPY ["PomeloButterBlog.Common/PomeloButterBlog.Common.csproj", "PomeloButterBlog.Common/"]
-RUN dotnet restore "PomeloButterBlog.Api.csproj"
+RUN dotnet restore "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj"
 COPY . .
-RUN dotnet build "PomeloButterBlog.Api.csproj" -c Release -o /app/build
+RUN dotnet build "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "PomeloButterBlog.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "PomeloButterBlog.Api/PomeloButterBlog.Api.csproj" -c Release -o /app/publish
 
 FROM nginx:alpine AS final
 WORKDIR /usr/share/nginx/html
