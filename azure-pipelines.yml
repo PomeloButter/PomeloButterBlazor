@@ -4,19 +4,23 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-
 variables:
-  dockerId: pomelobutter
-  namespace: pomelobutter
-  imageName: pomelobutterblog
-  registry: https://hub.docker.com/
-  dockerfilepath: '$(Build.SourcesDirectory)/Dockerfile'
-
+  imageName: '$(dockerId)/$(image)'
 
 steps:
 - script: |
-    docker build -f $(dockerfilepath) -t $(imageName) .
-    docker login -u $(dockerId) -p $(pwd) $(registry)
-    docker tag $(imageName) $(registry)/$(namespace)/$(imageName)
-    docker push $(registry)/$(namespace)/$(imageName)
-  displayName: push to dockerhub
+
+    docker build -f Dockerfile -t $(image):latest .
+    docker images
+    docker login -u $(dockerId) -p $(pwd)
+    docker tag $(image):latest $(imageName):latest
+    docker push $(imageName):latest
+
+
+
+    # docker build -f Dockerfile  -t $(image) .
+    # docker login -u $(dockerId) -p $(pwd) $(registry)
+    # docker tag $(image) $(registry)/$(namespace)/$(image)
+    # docker push $(registry)/$(namespace)/$(image)
+
+  displayName: 推送Docker镜像
