@@ -230,11 +230,15 @@ body:before {
 	z-index: -1;
 }
 
-body.dark-theme {
-	background-color: #292a2d;
-	color: #a9a9b3;
-	transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
-}
+	body.dark-theme {
+		background-image: url('../images/backgroundimg.jpg');
+		background-size: 100% 100%;
+		background-position: center center;
+		overflow: auto;
+		background-color: #292a2d;
+		color: #b6bbc1;
+		transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+	}
 
 a {
 	color: #161209;
@@ -606,7 +610,7 @@ header label {
 }
 
 .dark-theme .archive-item-date {
-	color: #87878d;
+	color: #d6d5d5;
 }
 
 .post-wrap .categories-card {
@@ -1088,7 +1092,7 @@ header label {
 }
 
 .dark-theme .post-content {
-    background: #292a2d !important;
+ 
     color: #eee !important;
 }
 
