@@ -114,7 +114,7 @@ namespace PomeloButterBlog.Api.Controllers
         [Route("GetPostList")]
         [HttpGet]
         public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog, int pageIndex = 1,
-            int pageSize = 10)
+            int pageSize = 8)
         {
             var list = new List<Post>();
             var count = 0;
