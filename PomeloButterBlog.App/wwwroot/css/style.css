@@ -231,7 +231,7 @@ body:before {
 }
 
 	body.dark-theme {
-		background-image: url('../images/backgroundimg.jpg');
+		background-image: url('/images/backgroundimg.jpg');
 		background-size: 100% 100%;
 		background-position: center center;
 		overflow: auto;
