@@ -20,7 +20,7 @@ namespace PomeloButterBlog.App.HttpClientApi
             return models;
         }
 
-        public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog, int pageIndex = 1, int pageSize = 10)
+        public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog, int pageIndex = 1, int pageSize = 8)
         {
             var result = await WorkingAsync(HttpMethod.Get, $"/BlogApi/GetPostList?tag={tag}&catalog={catalog}&pageIndex={pageIndex}&pageSize={pageSize}");
 
