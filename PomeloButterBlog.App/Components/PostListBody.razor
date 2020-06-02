@@ -61,8 +61,14 @@
         _models = result.Data;
         _totalPages = result.TotalPage;
     }
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await Api.GetPostListAsync(Tag, Calalog, PageIndex);
+        _models = result.Data;
+        _totalPages = result.TotalPage;
 
-    private string BuildLink(int pageIndex)
+    }
+    private  string BuildLink(int pageIndex)
     {
         var link = "/Posts/";
         if (!string.IsNullOrEmpty(Tag))

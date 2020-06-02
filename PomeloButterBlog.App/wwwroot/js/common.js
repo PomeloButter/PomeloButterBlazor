@@ -10,4 +10,11 @@ function mobileBtn() {
         mobileMenu.classList.add("active");
     }
 }
-
+//function RemoveImageBody(flag) {
+//
+//    if (flag) {
+//        document.getElementsByClassName("dark-theme")[0].classList.remove("imageBody");
+//    } else {
+//        document.getElementsByClassName("dark-theme")[0].classList.add("imageBody");
+//    }
+//}

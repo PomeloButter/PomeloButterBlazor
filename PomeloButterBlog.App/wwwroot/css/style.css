@@ -200,12 +200,12 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-thumb {
-	height: 20px;
-	background-color: #5A9600;
+    height: 20px;
+    background-color: #a9a9b3;
 }
 
 html::-webkit-scrollbar-thumb:hover {
-	background-color: #5A9600;
+    background-color: #161209;
 }
 
 body {
@@ -231,15 +231,17 @@ body:before {
 }
 
 	body.dark-theme {
-		background-image: url("../images/backgroundImg.jpg");
-		background-size: 100% 100%;
-		background-position: center center;
-		overflow: auto;
+		
 		background-color: #292a2d;
 		color: #b6bbc1;
 		transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 	}
-
+   .imageBody {
+    background-image: url("../images/backgroundImg.jpg");
+    background-size: 100% 100%;
+    background-position: center center;
+    overflow: auto;
+   }
 a {
 	color: #161209;
 	text-decoration: none;
