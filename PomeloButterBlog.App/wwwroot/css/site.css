@@ -41,12 +41,12 @@ app {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    /* background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%); */
 }
 
-.sidebar .top-row {
-    background-color: rgba(0,0,0,0.4);
-}
+    .sidebar .top-row {
+        background-color: #001529;
+    }
 
 .sidebar .navbar-brand {
     font-size: 1.1rem;
@@ -127,6 +127,7 @@ app {
         height: 100vh;
         position: sticky;
         top: 0;
+        background: #001529;
     }
 
     .main .top-row {
